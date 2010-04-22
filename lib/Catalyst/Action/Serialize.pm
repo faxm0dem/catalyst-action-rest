@@ -22,7 +22,7 @@ sub execute {
     return 1 if $c->req->method eq 'HEAD';
     return 1 if length( $c->response->body );
     return 1 if scalar @{ $c->error };
-    return 1 if $c->response->status =~ /^(?:204|3\d\d)$/;
+    return 1 if $c->response->status =~ /^(?:204)$/; # maybe 30[45] ?
 
     my ( $sclass, $sarg, $content_type ) =
       $self->_load_content_plugins( "Catalyst::Action::Serialize",
